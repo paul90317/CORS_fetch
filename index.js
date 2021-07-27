@@ -38,11 +38,6 @@ app.head('/',(req,res)=>{
 app.all('/',express.text(),(req,res)=>{
     fetch_and_send(req,res);
 })
-app.get('/CORS_fetch.js',(req,res)=>{
-    let data=fs.readFileSync(path.join(__dirname,'src/CORS_fetch.js'),'utf-8');
-    data=data.replace('{host}',req.get('host'));
-    res.send(data);
-})
 app.listen(process.env.PORT||8080,()=>{
     console.log(`http://127.0.0.1:8080/?url=https://www.ptt.cc/bbs/Gossiping/index.html`);
 })

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"></meta>
-        <title>postman 免登入中文版</title>
+        <title>Postman online without login</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <style>
             main{
@@ -39,9 +39,15 @@
                     let met=$('#method').val();
                     let opt={};
                     opt['method']=met;
-                    if($('#headers').html())
-                        opt['headers']=JSON.parse($('#headers').html());
-                    if(met!='GET'&&met!='HEAD')opt['body']=$('#body').html();
+                    console.log(met,url);
+                    if($('#headers').val()){
+                        try{
+                            opt['headers']=JSON.parse($('#headers').val());
+                        }catch(err){
+                            console.log(err)
+                        }
+                    }
+                    if(met!='GET'&&met!='HEAD')opt['body']=$('#body').val();
                     fetch(url,opt)
                     .then(res=>{
                         return res.text();
