@@ -1,0 +1,17 @@
+<script src="http://127.0.0.1:8080/COR-fetch.js"></script>
+<script>
+    CORS_fetch('https://www.youtube.com/')
+    .then(res=>{
+        return res.text();
+    })
+    .then(data=>{
+        console.log(data);
+    });
+    fetch('https://www.youtube.com/',{mode:'no-cors'})
+    .then(res=>{
+        return res.text();
+    })
+    .then(data=>{
+        console.log(data);
+    });
+</script>
