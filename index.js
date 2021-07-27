@@ -44,6 +44,6 @@ app.get('/CORS_fetch.js',(req,res)=>{
     data=data.replace('{host}',req.get('host'));
     res.send(data);
 })
-app.listen(8080||process.env.PORT,()=>{
+app.listen(process.env.PORT||8080,()=>{
     console.log(`http://127.0.0.1:8080/?url=https://www.ptt.cc/bbs/Gossiping/index.html`);
 })
