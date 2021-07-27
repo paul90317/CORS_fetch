@@ -2,11 +2,92 @@
 <html>
     <head>
         <meta charset="utf-8"></meta>
-        <title>my website</title>
-    </head>
-    <body style="margin:0px;">
+        <title>postman 免登入中文版</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            main{
+                display: flex;
+                justify-content: center;
+            }
+            .title_block{
+                background-color: orange;
+                color: white;
+            }
+            body{
+                padding: 0px;
+                margin: 0px;
+                user-select: none;
+            }
+            #method{
+                flex:none;
+            }
+            #url{
+                width:100%;
+            }
+            pre{
+                user-select: text;
+                border:1px black solid;
+            }
+            .none{
+                display: none;
+            }
+        </style>
         <script>
-            location.assign('https://github.com/paul90317/CORS_fetch');
+            $(document).ready(()=>{
+                $('#send').click(()=>{
+                    let url='/?url='+$('#url').val();
+                    let met=$('#method').val();
+                    let opt={};
+                    opt['method']=met;
+                    if($('#headers').html())
+                        opt['headers']=JSON.parse($('#headers').html());
+                    if(met!='GET'&&met!='HEAD')opt['body']=$('#body').html();
+                    fetch(url,opt)
+                    .then(res=>{
+                        return res.text();
+                    })
+                    .then(data=>{
+                        console.log(data);
+                        alert('press F12 to see the result');
+                    })
+                })
+            })
         </script>
+    </head>
+    <body>
+        <main class=title_block>
+            <div>
+                <h1>Postman online without login</h1>
+            </div>
+        </main>
+        <main>
+            <select id = "method" >
+                <option value = "GET" selected = true>GET</option>
+                <option value = "HEAD">HEAD</option>
+                <option value = "POST" >POST</option>
+                <option value = "PUT" >PUT</option>
+                <option value = "DELETE" >DELETE</option>
+            </select> 
+            <input type="text"id="url"/>
+            <button id="send">send</button>
+        </main>
+        <main style="flex-wrap: wrap;">
+            <div style="margin: 25px;">
+                <div>
+                    <code>
+                        headers(json):
+                    </code>
+                </div>
+                <textarea id="headers"rows=15/></textarea>
+            </div>
+            <div style="margin: 25px;">
+                <div>
+                    <code>
+                        body:
+                    </code>
+                </div>
+                <textarea id="body"rows=15/></textarea>
+            </div>
+        </main>
     </body>
 </html>

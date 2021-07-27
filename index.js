@@ -24,7 +24,6 @@ async function fetch_and_send(req,res){
     }catch(err){
         res.send(err);
     }
-    
 }
 app.get('/',(req,res,next)=>{
     if(req.query.url)return next();
