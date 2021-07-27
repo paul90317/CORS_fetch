@@ -1,6 +1,5 @@
 const express=require('express');
 const app=express();
-const port=8080||process.env.PORT;
 const path=require('path');
 const fs=require('fs');
 const fetch=require('node-fetch');
@@ -45,6 +44,6 @@ app.get('/CORS_fetch.js',(req,res)=>{
     data=data.replace('{host}',req.get('host'));
     res.send(data);
 })
-app.listen(port,()=>{
-    console.log(`http://127.0.0.1:${port}/?url=https://www.ptt.cc/bbs/Gossiping/index.html`);
+app.listen(8080||process.env.PORT,()=>{
+    console.log(`http://127.0.0.1:8080/?url=https://www.ptt.cc/bbs/Gossiping/index.html`);
 })
